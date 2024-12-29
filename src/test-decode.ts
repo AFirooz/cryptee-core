@@ -1,6 +1,6 @@
 import { decodeText } from './services/decode-text';
 
-// Example encrypted text (this should be your actual encrypted text)
+// Encrypted text to be chunked into 2048 characters
 const encryptedText = "HelloWorld".repeat(500); // Just to create a long string
 
 // Decode the text

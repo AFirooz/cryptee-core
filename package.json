@@ -5,24 +5,9 @@
   "main": "dist/cryptee-core.js",
   "scripts": {
     "build": "shx rm -rf dist && webpack --config ./webpack.config.js --progress",
-    "build:npm": "shx rm -rf npm && shx mkdir ./npm && shx cp LICENSE ./npm && shx cp package.json ./npm && node ./tools/build.js && webpack --config ./webpack.config.npm.js --progress",
-    "compile": "tsc",
-    "test": "jest",
-    "test:coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test-decode": "ts-node ./src/test-decode.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/crypteeio/cryptee-core.git"
-  },
-  "author": "crypteeio",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/crypteeio/cryptee-core/issues"
-  },
-  "homepage": "https://github.com/crypteeio/cryptee-core#readme",
   "dependencies": {
-    "esm": "^3.2.25",
     "shx": "^0.3.3",
     "trezor-connect": "7.0.5"
   },

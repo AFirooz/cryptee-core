@@ -18,3 +18,19 @@ TrezorConnect.manifest({
 ```
 
 more at [here](https://github.com/trezor/connect/blob/develop/docs/index.md)
+
+## Commands to run
+
+```bash
+# for decode
+# install npm
+npm install -g yarn shx ts-node
+yarn
+
+# decrypt
+
+
+
+# testing decode
+yarn test-decode
+```
