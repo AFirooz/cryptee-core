@@ -1,3 +1,6 @@
+// Purpose: Entry point for the package.
+// import many services and utils from different files and export them so that they can be imported from this file.
+
 import { encodeText } from './services/encode-text'
 import { encryptText } from './services/encrypt-text'
 import { decodeText } from './services/decode-text'
