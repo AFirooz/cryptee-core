@@ -12,6 +12,25 @@ export const decryptText = async (decodeText: string[], key: string) => {
         askOnDecrypt: index === 0
     }))
 
+    // TODO: should this be called here?
+    // TrezorConnect.manifest({
+    //     email: 'developer@xyz.com',
+    //     appUrl: 'http://your.application.com'
+    // })
+
+    // new version of TrezorConnect, see https://connect.trezor.io/9/#nodejs
+    // also see https://connect.trezor.io/9/methods/other/init/
+    // and https://github.com/trezor/trezor-suite/blob/develop/packages/connect-examples/node/src/index.ts
+    // https://github.com/trezor/trezor-suite/tree/develop/docs/packages/connect
+    // TrezorConnect.init({
+    //     lazyLoad: true, // this param prevents iframe injection until
+    //     // TrezorConnect.method is called
+    //     manifest: {
+    //         email: 'developer@xyz.com',
+    //         appUrl: 'http://your.application.com',
+    //     },
+    // });
+
     const cipherKeyValueResult = await TrezorConnect.cipherKeyValue({ bundle })
 
     let result: string;

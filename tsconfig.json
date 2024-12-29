@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "strict": true,
     "noImplicitAny": true,
-    "module": "esnext",
-    "target": "es2015",
+    "target": "es2016",
+    "module": "commonjs",
     "declaration": true,
-    "inlineSourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src/**/*"
   ],
-  "exclude": [
-    "node_modules",
-    "src/**/__tests__/*"
-  ]
 }
