@@ -7,10 +7,12 @@ interface CipherKeyValueItem {
     askOnDecrypt: boolean
 }
 
+// The term bundle refers to a collection or grouping of CipherKeyValueItem objects, encapsulated within the CipherKeyValueBundle interface
 interface CipherKeyValueBundle {
     bundle: CipherKeyValueItem[]
 }
 
+// the type keyword is used to define a type alias
 type CipherKeyValueInput = CipherKeyValueItem | CipherKeyValueBundle
 
 type CipheredKeyValue = {
