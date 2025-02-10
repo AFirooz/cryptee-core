@@ -1,4 +1,5 @@
-import TrezorConnect from 'trezor-connect'
+// import TrezorConnect from 'trezor-connect'
+import TrezorConnect from '@trezor/connect';
 import { BIP49_PATH } from '../constants'
 import { decodeHexToUnicode, groupByLength } from '../utils/string-converters'
 

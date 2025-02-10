@@ -41,7 +41,6 @@ declare function CipherKeyValue(input: CipherKeyValueBundle): CipherKeyValueBund
 
 interface TrezorConnect {   
     cipherKeyValue: typeof CipherKeyValue;
-    manifest(params: { email: string; appUrl: string }): void;
     init(params: {
     manifest: { email: string; appUrl: string };
     popup?: boolean;

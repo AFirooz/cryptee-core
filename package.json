@@ -10,6 +10,7 @@
     "test-trezor": "ts-node ./src/test-trezor.ts"
   },
   "dependencies": {
+    "@trezor/connect": "^9.4.7",
     "shx": "^0.3.3",
     "trezor-connect": "7.0.5"
   },
