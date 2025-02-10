@@ -4,10 +4,7 @@
   "description": "Library for data encryption using Trezor.",
   "main": "dist/cryptee-core.js",
   "scripts": {
-    "build": "shx rm -rf dist && webpack --config ./webpack.config.js --progress",
-    "test-decode": "ts-node ./src/test-decode.ts",
-    "test-decrypt": "ts-node ./src/test-decrypt.ts",
-    "test-trezor": "ts-node ./src/test-trezor.ts"
+    "serve": "npx http-server -p 8080"
   },
   "dependencies": {
     "@trezor/connect": "^9.4.7",

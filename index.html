@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cryptee.io – Decryption</title>
+  <!-- Load Trezor Connect v9 -->
+  <script src="https://connect.trezor.io/9/trezor-connect.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; max-width: 600px; margin: auto; }
+    label { display: block; margin-top: 1rem; }
+    input, textarea { width: 100%; padding: 0.5rem; font-size: 1rem; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Cryptee.io – Decryption</h1>
+  <p>
+    This is used to locally decrypt your data using your Trezor device.
+    Changes made to make it work with the latest Trezor Connect V9.
+    <br>
+    Enter the encrypted hex text and key below, then press "Decrypt" to have your Trezor decrypt it.
+    (Make sure you have Trezor Bridge running and your device connected.)
+  </p>
+
+  <label for="encryptedInput">Encrypted Text (hex):</label>
+  <input id="encryptedInput" type="text" placeholder="Enter encrypted hex text">
+
+  <label for="keyInput">Key:</label>
+  <input id="keyInput" type="text" placeholder="Enter key">
+
+  <button id="decryptBtn">Decrypt</button>
+
+  <label for="outputText">Decrypted Output (text):</label>
+  <textarea id="outputText" rows="4" readonly placeholder="The decrypted text will appear here."></textarea>
+
+  <script>
+    // Function to decode a hex string (UTF-16 BE) to text.
+    function decodeUTF16(hexStr) {
+      let result = "";
+      // Process 4 hex digits (16 bits) at a time.
+      for (let i = 0; i < hexStr.length; i += 4) {
+        const codeUnit = parseInt(hexStr.substr(i, 4), 16);
+        result += String.fromCharCode(codeUnit);
+      }
+      return result;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Initialize Trezor Connect V9
+        await TrezorConnect.init({
+          manifest: {
+            email: 'developer@xyz.com',
+            appUrl: 'http://localhost'
+          },
+          popup: true,
+          webusb: true
+        });
+        console.log("Trezor Connect V9 initialized successfully.");
+      } catch (error) {
+        console.error("Error initializing Trezor Connect V9:", error);
+      }
+
+      document.getElementById('decryptBtn').addEventListener('click', async () => {
+        // Get values from input fields.
+        const encryptedValue = document.getElementById('encryptedInput').value.trim();
+        const key = document.getElementById('keyInput').value.trim();
+        const outputArea = document.getElementById('outputText');
+
+        if (!encryptedValue || !key) {
+          alert("Please enter both the encrypted text and the key.");
+          return;
+        }
+
+        // Call Trezor's cipherKeyValue for decryption.
+        const response = await TrezorConnect.cipherKeyValue({
+          path: "m/49'/0'/0'",
+          key: key,
+          value: encryptedValue,
+          encrypt: false,
+          askOnEncrypt: true,
+          askOnDecrypt: true
+        });
+
+        console.log("Decryption response:", response);
+        if (response.success) {
+          // Convert the hex output (UTF-16 BE encoded) to actual text.
+          const decryptedText = decodeUTF16(response.payload.value);
+          outputArea.value = decryptedText;
+        } else {
+          outputArea.value = "Error: " + response.payload.error;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
