@@ -2,9 +2,10 @@
   "compilerOptions": {
     "strict": true,
     "noImplicitAny": true,
-    "target": "es2016",
-    "module": "commonjs",
+    "target": "ES2017",
+    "module": "commonjs", // es2022, esnext, system, node16, nodenext, preserve, commonjs
     "declaration": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
@@ -12,4 +13,8 @@
   "include": [
     "src/**/*"
   ],
+  "files": ["src/declarations/trezor-connect.d.ts"],
+  "exclude": [
+    "node_modules",
+  ]
 }

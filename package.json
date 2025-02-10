@@ -5,7 +5,9 @@
   "main": "dist/cryptee-core.js",
   "scripts": {
     "build": "shx rm -rf dist && webpack --config ./webpack.config.js --progress",
-    "test-decode": "ts-node ./src/test-decode.ts"
+    "test-decode": "ts-node ./src/test-decode.ts",
+    "test-decrypt": "ts-node ./src/test-decrypt.ts",
+    "test-trezor": "ts-node ./src/test-trezor.ts"
   },
   "dependencies": {
     "shx": "^0.3.3",

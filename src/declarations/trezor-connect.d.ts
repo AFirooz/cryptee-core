@@ -40,7 +40,17 @@ declare function CipherKeyValue(input: CipherKeyValueItem): CipherKeyValueItemOu
 declare function CipherKeyValue(input: CipherKeyValueBundle): CipherKeyValueBundleOutput
 
 interface TrezorConnect {   
-    cipherKeyValue: typeof CipherKeyValue
+    cipherKeyValue: typeof CipherKeyValue;
+    manifest(params: { email: string; appUrl: string }): void;
+    init(params: {
+    manifest: { email: string; appUrl: string };
+    popup?: boolean;
+    webusb?: boolean;
+    debug?: boolean;
+    transportReconnect?: boolean;
+    connectSrc?: string;
+    // Add more optional keys if needed (lazyLoad, webusbButton, etc.)
+  }): Promise<void>;
 }
 
 declare module 'trezor-connect' {

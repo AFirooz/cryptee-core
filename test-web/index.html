@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Trezor Connect Test</title>
+  <!-- Load Trezor Connect from the official CDN for version 7.x or above -->
+  <!-- (You can adjust the version number as desired: 7, 8, 9, etc.) -->
+  <script src="https://connect.trezor.io/7/trezor-connect.js"></script>
+</head>
+<body>
+  <h1>Trezor Connect Test Page</h1>
+
+  <p>
+    <button id="encryptBtn">Encrypt with Trezor</button>
+    <button id="decryptBtn">Decrypt with Trezor</button>
+  </p>
+
+  <p><strong>Open your browser’s DevTools console</strong> to see logs/results.</p>
+
+  <script>
+    // Wait for the DOM to load
+    document.addEventListener('DOMContentLoaded', async () => {
+
+      // 1) Let Trezor Connect know about your application
+      //    This is required in Trezor Connect 7.x and up.
+      TrezorConnect.manifest({
+        email: 'developer@xyz.com',
+        appUrl: 'http://localhost'
+      });
+      // Alternatively, TrezorConnect.init(...) can be used, but for a simple webpage
+      // TrezorConnect.manifest(...) is enough to get started.
+
+      // 2) Example: "Encrypt" some hex data. 
+      //    "48656c6c6f" is "Hello" in hex.
+      document.getElementById('encryptBtn').addEventListener('click', async () => {
+        const encryptResponse = await TrezorConnect.cipherKeyValue({
+          path: "m/49'/0'/0'",
+          key: 'myKey',
+          value: '48656c6c6f', // hex for "Hello"
+          encrypt: true,
+          askOnEncrypt: true,  // Trezor will show a prompt
+          askOnDecrypt: true
+        });
+        console.log('Encrypt response:', encryptResponse);
+
+        if (encryptResponse.success) {
+          console.log('Encrypted HEX:', encryptResponse.payload.value);
+          alert('Encrypted data (hex) is in console logs.\nUse it for the decryption test.');
+        } else {
+          console.error('Encryption failed:', encryptResponse.payload.error);
+        }
+      });
+
+      // 3) Example: "Decrypt" some hex data (paste the ciphertext from encryption step)
+      document.getElementById('decryptBtn').addEventListener('click', async () => {
+        const ciphertext = prompt('Paste the HEX string from the encryption step:');
+        if (!ciphertext) {
+          alert('No ciphertext provided.');
+          return;
+        }
+
+        const decryptResponse = await TrezorConnect.cipherKeyValue({
+          path: "m/49'/0'/0'",
+          key: 'myKey',
+          value: ciphertext,
+          encrypt: false,
+          askOnEncrypt: true,
+          askOnDecrypt: true
+        });
+        console.log('Decrypt response:', decryptResponse);
+
+        if (decryptResponse.success) {
+          const decryptedHex = decryptResponse.payload.value;
+          console.log('Decrypted HEX:', decryptedHex);
+          // "48656c6c6f" => "Hello" if it was the same key and path
+          alert('Decrypted HEX is in console logs.\nConvert hex to text to read.');
+        } else {
+          console.error('Decryption failed:', decryptResponse.payload.error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
