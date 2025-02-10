@@ -3,8 +3,10 @@
     "strict": true,
     "noImplicitAny": true,
     "target": "ES2017",
-    "module": "commonjs", // es2022, esnext, system, node16, nodenext, preserve, commonjs
-    "declaration": true,
+    // "module": "ESNext", // es2022, esnext, system, node16, nodenext, preserve, commonjs
+    "module": "system",
+    "outFile": "dist/bundle.js",
+    "declaration": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,

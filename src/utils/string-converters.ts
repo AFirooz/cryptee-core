@@ -1,5 +1,5 @@
 import { range } from "./common";
-import { PADDING_CHAR } from '../constants'
+import { PADDING_CHAR, TREZOR_MAX_PAYLOAD_SIZE } from '../constants'
 
 /**
  * Splits a string into groups of a specified length, using a regular expression.
@@ -54,6 +54,6 @@ export const padEnd = (value: string, count: number, char: string) =>
     value + char.repeat(count - value.length)
 
 // For big encrypted text, chunk it again in the same size that was used to encrypt
-function decodeTextChunks(text) {
+function decodeTextChunks(text: string) {
     return groupByLength(text, TREZOR_MAX_PAYLOAD_SIZE);
 }
