@@ -1,5 +1,8 @@
 # cryptee-core version 1.1.1
 
+> If you need to decrypt a text fast, see the `web` branch.
+
+This part of an ongoing endeavor.
 Library for data encryption using Trezor.
 
 [![Build Status](https://travis-ci.com/crypteeio/cryptee-core.svg?branch=master)](https://travis-ci.com/crypteeio/cryptee-core)
@@ -25,14 +28,14 @@ more at [here](https://github.com/trezor/connect/blob/develop/docs/index.md)
 # for decode
 # install npm
 npm install -g yarn shx ts-node
-yarn
+yarn install
 
 # decrypt
 
-
-
 # testing decode
 yarn test-decode
+yarn test-trezor
+yarn test-decrypt
 ```
 
 ## Notes
