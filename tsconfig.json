@@ -10,10 +10,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "files": ["src/declarations/trezor-connect.d.ts"],
   "exclude": [
     "node_modules",
   ]
