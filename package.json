@@ -4,7 +4,7 @@
   "description": "Library for data encryption using Trezor.",
   "main": "dist/cryptee-core.js",
   "scripts": {
-    "serve": "npx http-server -p 8080"
+    "serve": "npx tsc; npx http-server -p 8080"
   },
   "dependencies": {
     "@trezor/connect": "^9.4.7",
