@@ -2,8 +2,12 @@
 
 Library for data encryption using Trezor.
 
-It seems that the developer have abandoned this project. This is why, I have edited the project files to be able to run a simple webpage locally and encrypt / decrypt text.
+> This is a working version to encrypt/decrypt text using Trezor. I do not plan on making other functionalities work beyon that.
+
+As the developer have abandoned this project. I have edited the project files to make it run a simple webpage locally and encrypt / decrypt text.
 The functionality was mostly inspired by the original project.
+
+
 
 ## Commands to run
 
